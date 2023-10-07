@@ -6,7 +6,7 @@ module.exports = {
     Mutation: {
         async registerUser(_, { registerInput: { username, email, password } }) {
             //Check if user already exist (throw error)
-            const oldUser = User.findOne({ email })
+            const oldUser = await User.findOne({ email })
             if (oldUser) {
                 throw new GraphQLError('User already exists with email ' + email, {
                     extensions: {
@@ -42,7 +42,7 @@ module.exports = {
         },
         async loginUser(_, { loginInput: { username, email, password } }) {
 
-            const user = User.findOne({ email }) //check if user exists
+            const user = await User.findOne({ email }) //check if user exists
 
             if (user && (bcrypt.compare(password, user.model))) {    //check if exntered pass equals encrypted pass
                 const token = jwt.sign(

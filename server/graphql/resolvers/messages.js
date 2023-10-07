@@ -18,6 +18,6 @@ module.exports = {
         }
     },
     Query: {
-        message: (_, {ID}) => Message.findById(ID)
+        message: (_, {id}) => Message.findById(id)
     }
 }

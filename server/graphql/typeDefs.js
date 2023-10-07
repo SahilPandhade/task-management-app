@@ -1,13 +1,13 @@
-const { gql } = require('@apollo/server')
+// const { gql } = require('apollo-server');
 
-module.exports = gql`
-type Message{
+module.exports = `#graphql
+type Message {
     text:String
     createdAt:String
     createdBy:String
 }
 
-type User{
+type User {
     username:String
     email:String
     password:String
@@ -23,6 +23,7 @@ input RegisterInput{
     username:String
     email:String
     password:String
+    confirmPassword:String
 }
 
 input LoginInput{
@@ -30,8 +31,8 @@ input LoginInput{
     password:String
 }
 type Query{
-    message(id: ID!):Message
-    user(id:ID!) User
+    message(id: ID!): Message
+    user(id: ID!): User
 }
 
 type Mutation{

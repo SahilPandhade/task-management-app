@@ -5,4 +5,4 @@ const userSchema = new Schema({
     password: {type:String},
     token: {type:String}
 })
-module.exports = model('Message',userSchema)
+module.exports = model('User',userSchema)

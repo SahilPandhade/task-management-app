@@ -11,6 +11,7 @@ enum TaskStatus{
     COMPLETED
 }
 type Task {
+    _id:ID!
     name: String
     description: String
     status: TaskStatus
@@ -35,7 +36,7 @@ input LoginInput{
 }
 type Query{
     user(id: ID!): User
-    tasks(id:ID!) :[Task]
+    tasks(userId:ID!) :[Task]
 }
 
 type Mutation{

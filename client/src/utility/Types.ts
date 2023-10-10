@@ -6,21 +6,20 @@ export interface RegisterType {
 }
 
 export interface LoginType {
-    email:string,
-    password:string
+    email: string,
+    password: string
 }
 
-export interface UserType{
-    username:string,
-    email:string
+export interface UserType {
+    username: string,
+    email: string
 }
-export interface TaskType{
+export interface TaskType {
     // id:string,
-    name:string,
-    description:string,
-    status:string,
+    name: string,
+    description: string,
+    status: string,
 
-    userId:string,
-    createdBy:string
+    userId: string,
     // user:UserType
 }

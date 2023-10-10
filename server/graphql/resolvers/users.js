@@ -36,27 +36,31 @@ module.exports = {
             const res = await newUser.save()
 
             return {
-                id: res.id,
-                ...res._doc
+                user_id: res.id,
+                userName:res.username,
+                email:res.email,
+                password:res.password
             }
         },
-        async loginUser(_, { loginInput: { username, email, password } }) {
+        async loginUser(_, { loginInput: { email, password } }) {
 
             const user = await User.findOne({ email }) //check if user exists
 
-            if (user && (bcrypt.compare(password, user.model))) {    //check if exntered pass equals encrypted pass
+            if (user && (bcrypt.compare(password, user.password))) {    //check if exntered pass equals encrypted pass
                 const token = jwt.sign(
-                    { user_id: user._id, email },
+                    { user_id: user._id,userName:user.username, email },
                     process.env.JWT_SECRET_KEY,
                     {
                         expiresIn: '2h'
                     }
                 )
                 user.token = token  //Attach token to found user model 
-
                 return {
-                    id: user.id,
-                    ...user._doc
+                    user_id: user.id,
+                    userName:user.username,
+                    email:user.email,
+                    password:user.password,
+                    token:user.token
                 }
             } else {
                 throw new GraphQLError('Incorrect password', {

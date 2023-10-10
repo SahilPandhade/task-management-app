@@ -6,24 +6,17 @@ import { useNavigate } from 'react-router-dom'
 import { GraphQLErrors } from '@apollo/client/errors'
 import { useForm } from '../utility/hooks'
 import { LoginType, RegisterType } from '../utility/Types'
+import { REGISTER_USER } from '../mutations/userMutations'
+import { validateRegistration } from '../utility/helper'
 
 
-const REGISTER_USER = gql`
-    mutation Mutation ($registerInput: RegisterInput){
-        registerUser(registerInput:$registerInput){
-            email
-            username
-            token
-        }
-    }
-`
 const Register = () => {
     const { login } = useContext(AuthContext)
     const navigate = useNavigate()
     const [errors, setErrors] = useState<GraphQLErrors>([])
     const [formError, setFormError] = useState({ username: '', email: '', password: '', confirmPassword: '' })
     const registerUserCallback = (values: RegisterType | LoginType | {}) => {
-        const validationErrors = validateForm(values as RegisterType)
+        const validationErrors = validateRegistration(values as RegisterType)
         setFormError(validationErrors);
         const noErrors = Object.values(validationErrors).every(error => error === '');
         if (noErrors) {
@@ -55,30 +48,6 @@ const Register = () => {
         variables: { registerInput: values }
     })
 
-    const validateForm = (values: RegisterType) => {
-        let errors = { username: '', email: '', password: '', confirmPassword: '' }
-        if (!values.username) {
-            errors.username = 'Username required'
-        }
-        if (!values.email) {
-            errors.email = 'Email is required!'
-        } else if (!isValidEmail(values.email)) {
-            errors.email = 'Invalid email address!'
-        }
-        if (!values.password) {
-            errors.password = 'Password is required!'
-        }
-        if (!values.confirmPassword) {
-            errors.confirmPassword = 'Please confirm password!'
-        } else if (values.password !== values.confirmPassword) {
-            errors.confirmPassword = 'Passwords do not match';
-        }
-        return errors;
-    }
-    const isValidEmail = (email: string) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
   
     return (
         <div className='container'>

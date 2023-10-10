@@ -1,12 +1,12 @@
 const usersResolvers = require("./users")
-const messagesResolvers = require('./messages')
+const taskResolvers = require('./tasks')
 module.exports = {
     Query: {
-        ...messagesResolvers.Query,
-        ...usersResolvers.Query
+        ...usersResolvers.Query,
+        ...taskResolvers.Query
     },
     Mutation: {
-        ...messagesResolvers.Mutation,
-        ...usersResolvers.Mutation
+        ...usersResolvers.Mutation,
+        ...taskResolvers.Mutation
     }
 }

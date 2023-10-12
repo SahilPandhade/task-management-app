@@ -22,7 +22,7 @@ const Register = () => {
         if (noErrors) {
             registerUser()
         }
-        else{
+        else {
             console.log("error registering")
         }
     }
@@ -35,7 +35,7 @@ const Register = () => {
             confirmPassword: '',
         }
     })
-   
+
     const [registerUser, { loading }] = useMutation(REGISTER_USER, {
         update(proxy, { data: { registerUser: userData } }) {
             login(userData)
@@ -47,66 +47,79 @@ const Register = () => {
         variables: { registerInput: values }
     })
 
-  
+
     return (
         <div className='container'>
-            {
-                errors.map((error) => {
-                    return (
-                        <div key={error.name} className="alert alert-danger" role="alert">
-                           {error.message}
+            <div className='row justify-content-center mt-5'>
+                <div className='col-md-5'>
+                    <div className='card shadow-lg p-3 mb-5 bg-body rounded'>
+                        <div className="card-body">
+                            <h3 className='card-title text-center mb-4'>Register</h3>
+                            {
+                                errors.map((error) => {
+                                    return (
+                                        <div key={error.name} className="alert alert-danger" role="alert">
+                                            {error.message}
+                                        </div>
+                                    )
+                                })
+                            }
+                            <form onSubmit={onSubmit}>
+                                <div className='mb-3'>
+                                    <label htmlFor='username' className='form-label'>Username</label>
+                                    <input
+                                        type="text"
+                                        className={`form-control ${formError.username ? 'is-invalid' : ''}`}
+                                        id="username"
+                                        name="username"
+                                        onChange={onChange}
+                                    />
+                                    {formError.username && <div className='invalid-feedback'>{formError.username}</div>}
+                                </div>
+                                <div className='mb-3'>
+                                    <label htmlFor='email' className='form-label'>Email</label>
+                                    <input
+                                        type="email"
+                                        className={`form-control ${formError.email ? 'is-invalid' : ''}`}
+                                        id="email"
+                                        name="email"
+                                        onChange={onChange}
+                                    />
+                                    {formError.email && <div className='invalid-feedback'>{formError.email}</div>}
+                                </div>
+                                <div className='mb-3'>
+                                    <label htmlFor='password' className='form-label'>Password</label>
+                                    <input
+                                        type="password"
+                                        className={`form-control ${formError.password ? 'is-invalid' : ''}`}
+                                        id="password"
+                                        name="password"
+                                        onChange={onChange}
+                                    />
+                                    {formError.password && <div className='invalid-feedback'>{formError.password}</div>}
+                                </div>
+                                <div className='mb-3'>
+                                    <label htmlFor='confirmPassword' className='form-label'>Confirm Password</label>
+                                    <input
+                                        type="password"
+                                        className={`form-control ${formError.confirmPassword ? 'is-invalid' : ''}`}
+                                        id="confirmPassword"
+                                        name="confirmPassword"
+                                        onChange={onChange}
+                                    />
+                                    {formError.confirmPassword && <div className='invalid-feedback'>{formError.confirmPassword}</div>}
+                                </div>
+                                <div className='d-flex justify-content-center'>
+                                    <button type="submit" className='btn btn-lg w-50'
+                                        style={{ backgroundColor: '#a881af' }}>
+                                        Register
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-                    )
-                })
-            }
-            <form onSubmit={onSubmit}>
-                <div className='mb-3'>
-                    <label htmlFor='username' className='form-label'>Username</label>
-                    <input
-                        type="text"
-                        className={`form-control ${formError.username ? 'is-invalid' : ''}`}
-                        id="username"
-                        name="username"
-                        onChange={onChange}
-                    />
-                    {formError.username && <div className='invalid-feedback'>{formError.username}</div>}
+                    </div>
                 </div>
-                <div className='mb-3'>
-                    <label htmlFor='email' className='form-label'>Email</label>
-                    <input
-                        type="email"
-                        className={`form-control ${formError.email ? 'is-invalid' : ''}`}
-                        id="email"
-                        name="email"
-                        onChange={onChange}
-                    />
-                    {formError.email && <div className='invalid-feedback'>{formError.email}</div>}
-                </div>
-                <div className='mb-3'>
-                    <label htmlFor='password' className='form-label'>Password</label>
-                    <input
-                        type="password"
-                        className={`form-control ${formError.password ? 'is-invalid' : ''}`}
-                        id="password"
-                        name="password"
-                        onChange={onChange}
-                    />
-                    {formError.password && <div className='invalid-feedback'>{formError.password}</div>}
-                </div>
-                <div className='mb-3'>
-                    <label htmlFor='confirmPassword' className='form-label'>Confirm Password</label>
-                    <input
-                        type="password"
-                        className={`form-control ${formError.confirmPassword ? 'is-invalid' : ''}`}
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        onChange={onChange}
-                    />
-                    {formError.confirmPassword && <div className='invalid-feedback'>{formError.confirmPassword}</div>}
-                </div>
-                <button type="submit" className='btn btn-primary'> Register</button>
-            </form>
-
+            </div>
         </div>
     )
 }

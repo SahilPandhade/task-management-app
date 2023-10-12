@@ -3,13 +3,21 @@ import Tasks from '../components/Tasks'
 import AddTaskModal from '../components/AddTaskModal'
 import { AuthContext } from '../context/authContext'
 import { useNavigate } from 'react-router-dom'
-import Spinner from '../components/Spinner'
 
 const Dashboard = () => {
+  const navigate = useNavigate()
   const {user} = useContext(AuthContext)
-  if(!user) return <Spinner/>
+  useEffect(()=>{
+    if(!user){
+      navigate('/login')
+    }
+  },[user])
+  // if(!user){ 
+  //   navigate('/login')
+  //   //return <Spinner/>
+  // }
   return (
-   <>
+   user && <>
       <div className="d-flex justify-content-center gap-3 mt-4">
         <AddTaskModal />
       </div>

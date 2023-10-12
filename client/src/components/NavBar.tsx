@@ -13,13 +13,12 @@ const NavBar = () => {
     return (
         <nav className="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
             <div className="container-fluid">
-                <div className="navbar-brand">
+                <div className="navbar-brand px-md-5">
                     <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
                         <MdAddTask className="d-inline-block align-items-center me-2" />
-                        Task Manager
+                        TaskQL
                     </Link>
                 </div>
-
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -28,17 +27,16 @@ const NavBar = () => {
                         {
                             user!==null ?
                                 <>
-                                
                                     <li className="nav-item d-flex flex-row gap-2 align-items-center">
-                                        {/* <h4 className='text-white'>{user.username}</h4> */}
+                                        <div className='text-white bg-green'>{user.userName}</div>
                                         <button onClick={onLogOut} className="nav-link " aria-current="page" >Logout</button>
                                     </li>
                                 </>
                                 : <>
-                                    <li className="nav-item">
+                                    <li className="nav-item px-4">
                                         <Link to="/login" className="nav-link " aria-current="page" >Login</Link>
                                     </li>
-                                    <li className="nav-item">
+                                    <li className="nav-item px-4">
                                         <Link to="/register" className="nav-link">Register</Link>
                                     </li>
                                 </>

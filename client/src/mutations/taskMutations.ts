@@ -9,9 +9,22 @@ const ADD_TASK = gql`
             user{
                 username
             }
+            _id
         }
 
     }
 `
 
-export { ADD_TASK }
+const DELETE_TASK = gql`
+    mutation deleteTask($id:ID!){
+        deleteTask(id:$id){
+            name
+            description
+            status
+            userId
+        }
+    }
+
+`
+
+export { ADD_TASK,DELETE_TASK }

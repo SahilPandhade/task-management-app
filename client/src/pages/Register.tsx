@@ -21,7 +21,6 @@ const Register = () => {
         const noErrors = Object.values(validationErrors).every(error => error === '');
         if (noErrors) {
             registerUser()
-            console.log('Form submitted:', values);
         }
         else{
             console.log("error registering")

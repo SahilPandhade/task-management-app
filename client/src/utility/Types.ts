@@ -15,11 +15,12 @@ export interface UserType {
     email: string
 }
 export interface TaskType {
-    // id:string,
     name: string,
     description: string,
     status: string,
-
+    user:{
+        username:string
+    },
     userId: string,
-    // user:UserType
+    _id:string
 }

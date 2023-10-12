@@ -3,9 +3,10 @@ import gql from 'graphql-tag'
 const LOGIN_USER = gql`
     mutation login($loginInput: LoginInput){
         loginUser(loginInput:$loginInput){
-            #id
-            email
+            _id
             username
+            email
+            # userName
             token
         }
     }

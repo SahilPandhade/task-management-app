@@ -21,8 +21,7 @@ const Login = () => {
         const noErrors = Object.values(validationErrors).every(error => error === '');
         if (noErrors) {
             loginUser()
-            navigate('/dashboard')
-            console.log('Logged in :', values);
+            // navigate('/dashboard')
         }
         else{
             console.log("error logging in")
@@ -39,7 +38,6 @@ const Login = () => {
 
     const [loginUser, { loading }] = useMutation(LOGIN_USER, {
         update(proxy, { data: { loginUser: userData } }) {
-            
             login(userData)
             navigate("/dashboard")
         },

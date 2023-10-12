@@ -55,13 +55,14 @@ module.exports = {
                     }
                 )
                 user.token = token  //Attach token to found user model 
-                return {
-                    user_id: user.id,
-                    userName:user.username,
-                    email:user.email,
-                    password:user.password,
-                    token:user.token
-                }
+                console.log("this is login user ",user)
+                return user
+                    // user_id: user.id,
+                    // userName:user.username,
+                    // email:user.email,
+                    // password:user.password,
+                    // token:user.token
+                
             } else {
                 throw new GraphQLError('Incorrect password', {
                     extensions: {

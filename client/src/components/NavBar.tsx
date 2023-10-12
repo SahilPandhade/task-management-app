@@ -26,11 +26,11 @@ const NavBar = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
                         {
-                            user ?
+                            user!==null ?
                                 <>
                                 
                                     <li className="nav-item d-flex flex-row gap-2 align-items-center">
-                                        {/* <h4 className='text-white'>{userName}</h4> */}
+                                        {/* <h4 className='text-white'>{user.username}</h4> */}
                                         <button onClick={onLogOut} className="nav-link " aria-current="page" >Logout</button>
                                     </li>
                                 </>

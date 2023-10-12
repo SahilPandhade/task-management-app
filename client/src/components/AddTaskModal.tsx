@@ -1,31 +1,32 @@
 import React, { FormEvent, useContext, useState } from 'react'
 import { ADD_TASK } from '../mutations/taskMutations'
 import { useMutation } from '@apollo/client'
-import { GET_TASKS } from '../queries/taskQueries'
 import { FaList } from 'react-icons/fa'
-import { TaskType } from '../utility/Types'
 import { AuthContext } from '../context/authContext'
 import { GraphQLErrors } from '@apollo/client/errors'
+import { useNavigate } from 'react-router-dom'
 const AddTaskModal = () => {
-
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [errors, setErrors] = useState<GraphQLErrors>([])
   const [status, setStatus] = useState('NOT_STARTED')
-  const { user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
   const [addTask] = useMutation(ADD_TASK, {
     variables: { name, description, status, userId: user.user_id },
-    update(cache, { data: { addTask } }) {
-      const { tasks } = cache.readQuery({ query: GET_TASKS }) as { tasks: TaskType[] }
-      cache.writeQuery({
-        query: GET_TASKS,
-        data: { tasks: [...tasks, addTask] }
-      })
+    update(cache, { data: addTask }) {
+      // Remove the deleted task from the cache
+      cache.modify({
+        fields: {
+          tasks(existingTasks = []) {
+            return [...existingTasks, addTask]
+          },
+        },
+      });
     },
     onError({ graphQLErrors }) {
       setErrors(graphQLErrors)
-      console.log("Error writing the task to db(client side:)",errors)
-  },
+      console.log("Error writing the task to db(client side:)", errors)
+    },
   })
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,7 +34,7 @@ const AddTaskModal = () => {
     if (name === '' || description === '' || status === '') {
       return alert('Please fill all fields')
     }
-    if(user && user.user_id){
+    if (user && user.user_id) {
       addTask({
         variables: { taskInput: { name, description, status }, userId: user.user_id }
       });
@@ -42,20 +43,19 @@ const AddTaskModal = () => {
     setDescription('');
     setStatus('NOT_STARTED')
   }
-  if (!user) return <div>Loading...</div>
   return (
     <>
-      <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProjectModal">
-        <div className="d-flex align-items-center">
+      <button className="btn btn-primary btn-lg shadow" data-bs-toggle="modal" data-bs-target="#addTaskModal">
+        <div className="d-flex align-items-center gap-2">
           <FaList className='icon' />
           <div>Add a Task</div>
         </div>
       </button>
-      <div className="modal fade" id="addProjectModal" aria-labelledby="addProjectModal" aria-hidden="true">
+      <div className="modal fade" id="addTaskModal" aria-labelledby="addTaskModal" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title fs-5" id="addProjectModal">New Task</h5>
+              <h5 className="modal-title fs-5" id="addTaskModal">New Task</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
@@ -80,7 +80,7 @@ const AddTaskModal = () => {
                     <option className='' value={'COMPLETED'}>Completed</option>
                   </select>
                 </div>
-                <button type='submit' data-bs-dismiss="modal" className='btn btn-secondary'>Submit</button>
+                <button type='submit' data-bs-dismiss="modal" className='btn btn-dark'>Submit</button>
               </form>
             </div>
           </div>

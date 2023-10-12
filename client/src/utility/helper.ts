@@ -38,3 +38,14 @@ export const isValidEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 };
+
+// export enum statusCodes{
+//     NOT_STARTED='Not Started',
+//     IN_PROGRESS='In Progress',
+//     COMPLETED='Completed'
+// }
+export const statusCodes = {
+    NOT_STARTED: { value: 'Not Started', color: '#FF0000' },
+    IN_PROGRESS: { value: 'In Progress', color: '#FFA500' },
+    COMPLETED: { value: 'Completed', color: '#008000' }
+  };

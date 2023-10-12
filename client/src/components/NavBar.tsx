@@ -29,7 +29,7 @@ const NavBar = () => {
                                 <>
                                     <li className="nav-item d-flex flex-row gap-2 align-items-center">
                                         <div className='text-white bg-green'>{user.userName}</div>
-                                        <button onClick={onLogOut} className="nav-link " aria-current="page" >Logout</button>
+                                        <button onClick={onLogOut} className="nav-link px-4" aria-current="page" >Logout</button>
                                     </li>
                                 </>
                                 : <>

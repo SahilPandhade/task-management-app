@@ -19,21 +19,33 @@ const Tasks = () => {
     variables: { userId: user.user_id }
   })
 
-  if (loading) return <Spinner />
-  if (error) return <p>Something went Wrong!</p>
+  // if (loading) return <Spinner />
+  // if (error) return <p>Something went Wrong!</p>
   return (
     <>
       <div className="container mt-5 ">
         <div className="d-flex justify-content-center row row-cols-1 row-cols-md-4 gap-4">
           {!loading && !error && data.tasks.length > 0 ? (
             data.tasks.map((task: any, index: number) => (
-              <div key={index}>
+              <div key={index} className='px-4'>
                 <TaskCard task={task}
                   bodyClass={class_arr[(classNames + index) % class_arr.length]}
                 />
               </div>
             ))
-          ) : (<p>No Projects</p>)}
+          )
+            : (
+              <>
+                {
+                  loading && <Spinner />
+                }
+                {
+                  error && <p>Something went Wrong!</p>
+                }
+                {!loading && !error && <p>No Projects</p>}
+              </>
+            )
+          }
         </div>
       </div>
     </>

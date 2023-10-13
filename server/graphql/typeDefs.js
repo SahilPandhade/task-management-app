@@ -37,11 +37,11 @@ input LoginInput{
 }
 type Query{
     user(id: ID!): User
+    task(taskId:ID!): Task
     tasks(userId:ID!) :[Task]
 }
 
 type Mutation{
-
     registerUser(registerInput:RegisterInput): User
     loginUser(loginInput:LoginInput): User
 

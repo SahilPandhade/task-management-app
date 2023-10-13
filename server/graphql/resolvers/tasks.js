@@ -51,12 +51,16 @@ module.exports = {
         }
     },
     Query: {
+        task: async(_, {taskId}) => {
+            const task = await Task.findById(taskId)
+            const user = await User.findById(task.userId)
+            return {...task._doc,user}
+        },
         tasks: async (_, { userId }) => {
             const foundedTasks = await Task.find({ userId:userId });
             const user = await User.findById(userId)
             return foundedTasks.map((task)=>{
                 const newTask = {...task._doc,user}
-                console.log("newTask ",newTask)
                 return newTask
             })
         }

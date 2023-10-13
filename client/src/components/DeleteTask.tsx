@@ -8,7 +8,7 @@ const DeleteTask = ({handleDelete}:DeleteProps) => {
     return (
         <>
             <button type="button" className='d-flex align-items-center' data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" style={{ background: 'none', border: 'none' }}>
-                <MdDelete className='width:100px' />
+                <MdDelete className="" style={{ fontSize: '1.4rem',color:'red' }} />
             </button>
             <div className="modal fade" id="confirmDeleteModal" aria-labelledby="confirmDeleteModal" aria-hidden="true">
                 <div className="modal-dialog">

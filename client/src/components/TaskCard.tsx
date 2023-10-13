@@ -22,7 +22,7 @@ const TaskCard = ({ task, bodyClass }: { task: any, bodyClass: string }) => {
     },
   })
   return (
-    <div className={`card my-3 shadow`} style={{ maxWidth: '20rem' }}>
+    <div className={`card task-card my-3 shadow`} style={{ maxWidth: '20rem' }}>
       <div className={`card-header ${bodyClass} w-100 d-flex justify-content-between align-items-center text-black`}>
         <div>{task.name}</div>
         <DeleteTask handleDelete={deleteTask} />
@@ -30,7 +30,7 @@ const TaskCard = ({ task, bodyClass }: { task: any, bodyClass: string }) => {
       <div className="card-body">
         <p className="card-text">{(task.description as string).slice(0, Math.max(task.description.length, 25))}</p>
         <div className='d-flex flex-row align-items-center justify-content-between'>
-          <a href="#" className='btn btn-sm' style={{ backgroundColor: '#80669d' }}>
+          <a href={`/tasks/${task._id}`} className='btn btn-sm' style={{ backgroundColor: '#80669d' }}>
             View Task
           </a>
           <div><strong style={{color:status_color}}>{status}</strong></div>

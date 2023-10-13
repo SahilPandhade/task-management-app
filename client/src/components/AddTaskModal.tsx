@@ -45,7 +45,7 @@ const AddTaskModal = () => {
   }
   return (
     <>
-      <button className="btn btn-primary btn-lg shadow" data-bs-toggle="modal" data-bs-target="#addTaskModal">
+      <button className="btn btn-lg shadow" style={{backgroundColor:'#5adbb5'}} data-bs-toggle="modal" data-bs-target="#addTaskModal">
         <div className="d-flex align-items-center gap-2">
           <FaList className='icon' />
           <div>Add a Task</div>

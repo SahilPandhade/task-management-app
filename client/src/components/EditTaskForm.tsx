@@ -28,7 +28,7 @@ const EditTaskForm = ({ task }: { task: TaskProps }) => {
     }
     return (
         <div className='mt-3'>
-            <h3>Update Task Details</h3>
+            <h4>Update Task Details</h4>
             <form onSubmit={handleSubmit}>
                 <div className='mb-3'>
                     <label className='form-label'>Name</label>
@@ -52,7 +52,7 @@ const EditTaskForm = ({ task }: { task: TaskProps }) => {
                         <option className='' value={'COMPLETED'}>Completed</option>
                     </select>
                 </div>
-                <button value="submit" className="btn btn-primary">Submit</button>
+                <button value="submit" className="btn btn-primary">Update</button>
             </form>
         </div>
     )

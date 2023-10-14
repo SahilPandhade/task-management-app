@@ -45,7 +45,7 @@ export const isValidEmail = (email: string) => {
 //     COMPLETED='Completed'
 // }
 export const statusCodes = {
-    NOT_STARTED: { value: 'Not Started', color: '#FF0000' },
-    IN_PROGRESS: { value: 'In Progress', color: '#FFA500' },
-    COMPLETED: { value: 'Completed', color: '#008000' }
+    NOT_STARTED: { value: 'Not Started', color: 'text-danger' },
+    IN_PROGRESS: { value: 'In Progress', color: 'text-warning' },
+    COMPLETED: { value: 'Completed', color: 'text-success' }
   };

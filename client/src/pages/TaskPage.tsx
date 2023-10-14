@@ -21,13 +21,13 @@ const TaskPage = () => {
                 <div className='container mt-5'>
                     <div className="card">
                         <div className="card-header d-flex flex-row align-items-center justify-content-between bg-primary text-white">
-                            <h1 className='card-title'>{data.task.name}</h1>
+                            <h1 className='card-title'><strong>{data.task.name}</strong></h1>
                             <div className='d-flex flex-row gap-3'>
                                 <DeleteTask handleDelete={deleteTask} />
                                 <Link to="/dashboard" className='btn btn-light btn-md d-inline ms-auto'>Back</Link>
                             </div>
                         </div>
-                        <div className="card-body">
+                        <div className="card-body d-flex flex-column gap-4">
                             <div className="mt-2">
                                 <h5 className='card-title'>Task Details</h5>
                                 <p className='card-text'>{data.task.description}</p>
@@ -35,9 +35,8 @@ const TaskPage = () => {
                                     {statusCodes[data.task.status as keyof typeof statusCodes].value}
                                 </p>
                             </div>
-                          
+                            <div className='border border-1-dark'></div>
                             <EditTaskForm task={data.task} />
-
                         </div>
                     </div>
 

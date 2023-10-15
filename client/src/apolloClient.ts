@@ -20,7 +20,7 @@ const cache = new InMemoryCache({
     }
   })
 const httpLink = createHttpLink({
-    uri:`${import.meta.env.REACT_APP_BASE_URL}/graphql`
+    uri:`${import.meta.env.VITE_BASE_URL}/graphql`
 })
 
 const authLink = setContext((_, {headers})=>{

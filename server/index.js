@@ -42,7 +42,7 @@ async function startApolloServer() {
     await server.start();
     app.use(
         '/graphql',
-        cors(),
+        cors({origin:[process.env.HOST_URL]}),
         json(),
         expressMiddleware(server, {}),
     );

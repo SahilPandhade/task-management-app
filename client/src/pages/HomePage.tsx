@@ -49,7 +49,7 @@ const HomePage = () => {
             Supercharge your productivity with TaskQL
           </h1>
           <button className="btn btn-lg shadow" style={{ backgroundColor: '#5adbb5' }} onClick={handleClick}>
-             {user ?'Go to my dashboard' : 'Start Now'} 
+             {user ?'Go to my dashboard' : 'Get Started'} 
           </button>
         </div>
       </div>

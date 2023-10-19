@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import Spinner from './Spinner'
-import { useQuery } from '@apollo/client'
+import {useQuery } from '@apollo/client'
 import { GET_TASKS } from '../queries/taskQueries'
 import { AuthContext } from '../context/authContext'
 import TaskCard from './TaskCard'
@@ -9,12 +9,13 @@ import { useNavigate } from 'react-router-dom'
 const Tasks = () => {
   const navigate = useNavigate()
   const [classNames, setClassNames] = useState<number>(0)
-  const class_arr = ['text-bg-primary', 'text-bg-secondary', 'text-bg-success', 'text-bg-warning', 'text-bg-info', 'text-bg-light', 'text-bg-dark']
+  const class_arr = ['text-bg-primary', 'text-bg-secondary', 'text-bg-success', 'text-bg-warning', 'text-bg-info', 'text-bg-light', 'text-bg-dark text-white ']
 
   const { user } = useContext(AuthContext)
   if (!user) {
     navigate('/')
   }
+
   const { data, loading, error } = useQuery(GET_TASKS, {
     variables: { userId: user.user_id }
   })

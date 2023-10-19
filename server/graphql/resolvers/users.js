@@ -37,7 +37,7 @@ module.exports = {
 
             return {
                 user_id: res.id,
-                userName:res.username,
+                username:res.username,
                 email:res.email,
                 password:res.password
             }
@@ -48,7 +48,7 @@ module.exports = {
 
             if (user && (bcrypt.compare(password, user.password))) {    //check if exntered pass equals encrypted pass
                 const token = jwt.sign(
-                    { user_id: user._id,userName:user.username, email },
+                    { user_id: user._id,username:user.username, email },
                     process.env.JWT_SECRET_KEY,
                     {
                         expiresIn: '2h'

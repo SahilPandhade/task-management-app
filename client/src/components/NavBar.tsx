@@ -9,7 +9,7 @@ const NavBar = () => {
         logout()
         navigate("/")
     }
-
+    console.log("user in nav ",user)
     return (
         <nav className="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
             <div className="container-fluid">
@@ -28,7 +28,7 @@ const NavBar = () => {
                             user!==null ?
                                 <>
                                     <li className="nav-item d-flex flex-row gap-2 align-items-center">
-                                        <div className='text-white bg-green'>{"Hi, "+user.userName}</div>
+                                        <div className='text-white bg-green'>{"Hi, "+user.username}</div>
                                         <button onClick={onLogOut} className="nav-link px-4" aria-current="page" >Logout</button>
                                     </li>
                                 </>

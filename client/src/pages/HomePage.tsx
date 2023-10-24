@@ -1,12 +1,14 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import banner_image from '../assets/homepage.jpg'
 import Features from '../components/Features'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../context/authContext'
 import Footer from '../components/Footer'
+import Spinner from '../components/Spinner'
 const HomePage = () => {
   const navigate = useNavigate()
   const { user } = useContext(AuthContext)
+  const [imgLoading, setImgLoading] = useState(true)
   const handleClick = () => {
     if (!user) {
       navigate('/register')
@@ -28,6 +30,7 @@ const HomePage = () => {
         >
           <img
             src={banner_image}
+            onLoad={() => setImgLoading(false)}
             style={{
               width: '100%',
               height: '100%',
@@ -53,11 +56,13 @@ const HomePage = () => {
               {user ? 'Go to my dashboard' : 'Get Started'}
             </button>
           </div>
+          
         </div>
         <Features />
         <Footer />
+
       </div>
-    
+
     </>
 
   )

@@ -49,14 +49,14 @@ const Features = () => {
   //   );
   // };
   return (
-    <div className="container w-100 mt-5" ref={featuresContainerRef}>
+    <div className="container mt-5" ref={featuresContainerRef}>
       <div className="row">
         {
           features.map((feature) => (
             <div className="col-md-4 mb-4" key={feature.id}>
-              <div className="card feature-card bg-black text-white">
-                <div className="card-body">
-                  <h5 className="card-title">{feature.title}</h5>
+              <div className="card feature-card bg-black text-white p-4">
+                <h5 className="card-title">{feature.title}</h5>
+                <div className="card-body ">
                   <p className="card-text">
                     {feature.text}
                   </p>

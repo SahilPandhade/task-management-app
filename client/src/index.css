@@ -117,14 +117,15 @@
   }
   
   .Last-footer {
-    background: #f60838;
+    background: #000;
     text-align: center;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
   }
   
   .Last-footer p {
+    color:#ffffff;
     margin-bottom: 0;
-    font-size: 1.2rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 400;
   }
   
